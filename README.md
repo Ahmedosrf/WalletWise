@@ -1,87 +1,112 @@
-# 💰 WalletWise — مساعدك المالي الذكي
+# WalletWise — Offline-First Personal Finance for Arabic Users
 
-> **"فلوسك ما تضيع... بس تحتاج من يلمها."**
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+[![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)](https://dart.dev/)
+[![License](https://img.shields.io/badge/license-MIT-2ea44f?logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Language](https://img.shields.io/badge/UI-Arabic%20%7C%20RTL-0F766E)](#)
 
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)](https://flutter.dev)
-[![SalamHack 2026](https://img.shields.io/badge/SalamHack-2026-gold)](https://salamhack.ps)
+> **WalletWise** is an Arabic-first, offline-first mobile finance application for recording expenses, managing budgets, and understanding household spending in low-connectivity environments.
 
----
+## Product Overview
 
-## 📋 عن المشروع
+WalletWise is designed around a practical constraint: financial tools should remain useful even when connectivity is unreliable. The application combines fast local expense capture with optional cloud-backed services for authentication, synchronization, and AI-assisted extraction. Its interface is built for Arabic-speaking users and supports right-to-left presentation.
 
-WalletWise هو تطبيق موبايل ذكي لإدارة المصاريف الشخصية والعائلية، طُوّر خصيصاً للمشاركة في **SalamHack 2026**. التطبيق يعمل **100% بدون إنترنت**، ويدعم الذكاء الاصطناعي لتحليل الفواتير والصوت، مع واجهة عربية كاملة.
+The project was developed for **SalamHack 2026** by a Palestine-based team.
 
----
+## Core Capabilities
 
-## 🎯 المشكلة
+| Capability | What it provides |
+|---|---|
+| **Expense capture** | Manual entry, receipt-based entry, voice-based entry, and SMS-oriented workflows. |
+| **Budgeting** | Category budgets, spending summaries, notifications, and progress tracking. |
+| **Reports** | Visual summaries, monthly comparisons, and category-level spending analysis. |
+| **AI assistance** | Gemini-powered workflows for extracting information from receipts and voice input. |
+| **Family finance** | Shared household workflows with role-oriented access patterns. |
+| **Offline-first storage** | Local persistence through `SharedPreferences`, so core interactions do not depend on a live connection. |
+| **Arabic UX** | RTL-ready screens and terminology designed for Arabic users. |
 
-في غزة، إدارة المصاريف مش رفاهية... إنها ضرورة. الدخل متقطع، الأسعار ملتهبة، والإنترنت في إجازة. لكن فلوسك ما زالت تصرف، وأنت ما زلت تسأل: "وين راحت؟" الورقة والقلم ضاعوا، الذاكرة خانتك، وتطبيقات الأجانب تطلب إنترنت مش موجود أصلًا.
+## Technical Architecture
 
----
+The application is implemented as a Flutter client with a separation between presentation, domain models, and service integrations.
 
-## ✅ الحل
+| Layer | Implementation |
+|---|---|
+| Mobile UI | Flutter and Dart |
+| Local persistence | `SharedPreferences` through `LocalService` |
+| Authentication and cloud data | Firebase Authentication and Cloud Firestore |
+| Additional backend integration | Supabase client integration |
+| Media input | `image_picker` for receipt and image workflows |
+| Network integrations | `http` package and service-layer wrappers |
+| Visual design | Custom Flutter widgets, RTL layouts, and application theme constants |
 
-WalletWise مش مجرد تطبيق... هو جواب لكل مرة سألت فيها: "فين راحت فلوسي؟"
+## Repository Structure
 
-- 📸 **صوّر أي فاتورة** — والذكاء الاصطناعي يستخرج المبلغ والمحل والتصنيف تلقائياً
-- 🎤 **انطق بالمصروف** — والتطبيق يفهم ويسجل
-- 💬 **قراءة رسائل البنك** — استخراج المعاملات بدون لمس شيء
-- ✍️ **إدخال يدوي سريع** — 3 ثواني وتكون سجلت
+```text
+lib/
+├── constants/       # Theme and shared UI constants
+├── models/          # Domain models such as transactions
+├── screens/         # Feature-oriented Flutter screens
+└── services/        # Firebase, Supabase, and local persistence services
+assets/              # Application assets and logo
+android/             # Android platform project
+pubspec.yaml         # Flutter dependencies and configuration
+LICENSE              # MIT license
+```
 
----
+## Local Development
 
-## ✨ المميزات
+### Prerequisites
 
-| الميزة | الوصف |
-|:---|:---|
-| 📸 **تصوير الفواتير** | Gemini AI يحلل الفاتورة ويستخرج المبلغ والمحل والتصنيف |
-| 🎤 **التسجيل الصوتي** | انطق بالمصروف والتطبيق يفهم ويسجل |
-| 📊 **تقارير بصرية** | مخططات دائرية، مقارنات شهرية، وتوقعات |
-| 🤖 **مستشار مالي ذكي** | يجاوب على أسئلتك بناءً على بياناتك الحقيقية |
-| 👨‍👩‍👧 **محفظة عائلية** | بصلاحيات متعددة: مدير، مشاهد، مخصص |
-| 📴 **Offline-First** | كل المميزات تعمل بدون إنترنت |
-| 🔔 **إشعارات ذكية** | تنبيهات عند تجاوز الميزانية |
-| 🎯 **أهداف ادخارية** | تتبع الأهداف مع توقع وقت الإنجاز |
+Install the Flutter SDK compatible with the Dart constraint in [`pubspec.yaml`](pubspec.yaml), then verify the environment:
 
----
+```bash
+flutter doctor
+```
 
-## 🛠️ مجموعة التكنولوجيا
+### Installation
 
-> **"ذكاء اصطناعي في جيبك... حتى لو النت مش في جيبك."**
+```bash
+git clone https://github.com/Ahmedosrf/WalletWise.git
+cd WalletWise
+flutter pub get
+```
 
-| التقنية | الاستخدام |
-|:---|:---|
-| **Flutter + Dart** | إطار تطوير التطبيق (Android + iOS) |
-| **Gemini 1.5 Flash API** | تحليل الفواتير والصوت |
-| **SharedPreferences** | تخزين محلي بدون إنترنت |
-| **CustomPaint** | المخططات البيانية ورمز QR |
-| **RTL Support** | دعم كامل للغة العربية |
+### Run the application
 
----
+```bash
+flutter run
+```
 
-## 👥 الفريق
+To target a specific device, use `flutter devices` followed by `flutter run -d <device-id>`.
 
-| العضو | الدور | التخصص |
-|:---|:---|:---|
-| **أحمد وسام الحايك** | Project Lead / Pitcher | خريج علم بيانات وذكاء اصطناعي |
-| **أحمد مأمون اصرف**| Mobile Developer | خريج علم بيانات وذكاء اصطناعي |
-| **عيد أحمد أبو بيض** | UI/UX Designer | علم بيانات وذكاء اصطناعي |
+## Configuration and Security
 
-**البلد:** فلسطين (غزة) 🇵🇸
+Some services require platform configuration and valid credentials. Configure Firebase and Supabase through the normal Flutter platform setup before enabling cloud-backed features. Do not commit API keys, service-account files, or production credentials. Use local or CI secrets for environment-specific configuration and review the repository history if a credential is ever exposed.
 
----
+The application is intended to keep core local interactions available offline; cloud synchronization and remote AI features naturally require connectivity.
 
-## 📱 Demo
+## Demonstration
 
 [![WalletWise Demo](https://img.youtube.com/vi/y7aqvFgPtDo/0.jpg)](https://youtube.com/shorts/y7aqvFgPtDo)
 
----
+## Team
 
-## 🚀 تشغيل المشروع محلياً
+| Contributor | Role |
+|---|---|
+| Ahmed Wasam Alhayek | Project Lead / Pitcher |
+| Ahmed Mamoun Osrof | Mobile Developer |
+| Eid Ahmed Abu Beid | UI/UX Designer |
 
-```bash
-git clone https://github.com/AhmedAlhayek/WalletWise.git
-cd WalletWise
-flutter pub get
-flutter run
+**Location:** Palestine, Gaza.
+
+## Roadmap
+
+Potential next steps include adding automated Flutter tests, introducing a formal environment configuration layer, improving synchronization conflict handling, and documenting the AI extraction contracts with representative test fixtures.
+
+## License
+
+WalletWise is distributed under the [MIT License](LICENSE).
+
+## Contact
+
+Maintained by [Ahmed Osrof](https://github.com/Ahmedosrf). For project-specific questions, please open a GitHub issue with a reproducible description and the affected platform.
